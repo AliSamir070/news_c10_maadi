@@ -25,7 +25,7 @@ class CategoryWidget extends StatelessWidget {
         children: [
           Image.asset(
             "assets/images/${categoryModel.imagePath}",
-            height: height*0.12,
+            height: height*0.1,
             fit: BoxFit.fitHeight,
           ),
           SizedBox(

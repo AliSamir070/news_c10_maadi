@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
   void onCategoryItemClick(CategoryModel categoryModel){
-    selectedWidget = CategoryDetails();
+    selectedWidget = CategoryDetails(categoryModel: categoryModel,);
     setState(() {
 
     });

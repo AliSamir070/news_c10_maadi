@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news_c10_maadi/model/source_model.dart';
+import 'package:news_c10_maadi/model/SourcesResponse/Source.dart';
 
 class SourceWidget extends StatelessWidget {
-  SourceModel source;
+  Source source;
   bool isSelected;
   SourceWidget({Key? key,required this.source,this.isSelected = false}) : super(key: key);
 
@@ -20,7 +20,7 @@ class SourceWidget extends StatelessWidget {
         ),
       ),
       child: Text(
-        source.name,
+        source.name??"",
         style: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w500,
