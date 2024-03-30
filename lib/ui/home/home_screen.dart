@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:news_c10_maadi/model/category_model.dart';
 import 'package:news_c10_maadi/ui/categories/categories_widget.dart';
 import 'package:news_c10_maadi/ui/category_details/categoroy_details.dart';
 import 'package:news_c10_maadi/ui/home/widgets/home_drawer_widget.dart';
 import 'package:news_c10_maadi/ui/settings/settings_widget.dart';
+
+import '../../data_layer/model/category_model.dart';
 
 class HomeScreen extends StatefulWidget {
   static String routename = "HomeScreen";

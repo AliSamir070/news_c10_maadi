@@ -5,7 +5,8 @@ import 'package:news_c10_maadi/ui/category_details/categoriesViewModel/categoryD
 import 'package:news_c10_maadi/ui/category_details/news_list_widget.dart';
 import 'package:news_c10_maadi/ui/category_details/source_widget.dart';
 
-import '../../model/category_model.dart';
+import '../../data_layer/model/category_model.dart';
+import '../../di/di.dart';
 
 class CategoryDetails extends StatefulWidget {
   CategoryModel categoryModel;
@@ -22,7 +23,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => CategoryDetailsViewModel()..getSources(widget.categoryModel.id),
+      create: (_) => getIt<CategoryDetailsViewModel>()..getSources(widget.categoryModel.id),
       child: BlocBuilder<CategoryDetailsViewModel, CategoryDetailsState>(
         buildWhen: (prevState , current)=>current is CategoryDetailsErrorState
             || current is CategoryDetailsSourcesSuccessState

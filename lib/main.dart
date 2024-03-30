@@ -4,8 +4,11 @@ import 'package:news_c10_maadi/shared/blov_observer.dart';
 import 'package:news_c10_maadi/shared/theme.dart';
 import 'package:news_c10_maadi/ui/home/home_screen.dart';
 
+import 'di/di.dart';
+
 void main() {
   Bloc.observer = MyBlocObserver();
+  configureDependencies();
   runApp(const MyApp());
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_c10_maadi/model/SourcesResponse/Source.dart';
+
+import '../../data_layer/model/SourcesResponse/Source.dart';
 
 class SourceWidget extends StatelessWidget {
   Source source;

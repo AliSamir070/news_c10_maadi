@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_c10_maadi/shared/api/api_manager.dart';
 import 'package:news_c10_maadi/ui/category_details/categoriesViewModel/categoryDetailsViewModel.dart';
 
-import '../../model/SourcesResponse/Source.dart';
+import '../../data_layer/model/SourcesResponse/Source.dart';
 import 'news_item.dart';
 
 class NewsListWidget extends StatefulWidget {

@@ -1,23 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+import 'package:news_c10_maadi/data_layer/datasource_impl/news_cache_datasource_impl.dart';
+
 import 'package:news_c10_maadi/shared/api/api_manager.dart';
 
-import '../../../model/SourcesResponse/Source.dart';
-import '../../../model/newsresponse/Article.dart';
+import '../../../data_layer/datasource_contract/newsdatasource.dart';
+import '../../../data_layer/datasource_impl/news_api_datasource_impl.dart';
+import '../../../data_layer/model/SourcesResponse/Source.dart';
+import '../../../data_layer/model/newsresponse/Article.dart';
+import '../../../data_layer/reposiory_impl/news_repository_impl.dart';
+import '../../../repository_contract/repository.dart';
 
+@injectable
 class CategoryDetailsViewModel extends Cubit<CategoryDetailsState>{
-  CategoryDetailsViewModel():super(CategoryDetailsLoadingState());
+   NewsRepository repository;
+   @factoryMethod
+  CategoryDetailsViewModel(this.repository):super(CategoryDetailsLoadingState());
 
   static CategoryDetailsViewModel get(BuildContext context)=>BlocProvider.of(context);
   getSources(String categoryid)async{
     emit(CategoryDetailsLoadingState());
     try{
-      var sourcesResponse = await ApiManager.getSources(categoryid);
-      if(sourcesResponse.status == "error"){
+      var sourcesList = await repository.getSources(categoryid);
+      emit(CategoryDetailsSourcesSuccessState(sourcesList));
+      /*if(sourcesResponse.status == "error"){
         emit(CategoryDetailsErrorState(sourcesResponse.message??""));
       }else{
         emit(CategoryDetailsSourcesSuccessState(sourcesResponse.sources??[]));
-      }
+      }*/
     }catch(e){
       emit(CategoryDetailsErrorState(e.toString()));
     }
@@ -27,12 +38,13 @@ class CategoryDetailsViewModel extends Cubit<CategoryDetailsState>{
   getNews(String sourceid)async{
     emit(CategoryDetailsNewsLoadingState());
     try{
-      var newsResponse = await ApiManager.getNews(sourceid);
-      if(newsResponse.status == "error"){
+      var newsList = await repository.getNews(sourceid);
+      emit(CategoryNewsSuccessState(newsList));
+      /*if(newsResponse.status == "error"){
         emit(CategoryDetailsNewsErrorState(newsResponse.message??""));
       }else{
         emit(CategoryNewsSuccessState(newsResponse.articles??[]));
-      }
+      }*/
     }catch(e){
       emit(CategoryDetailsNewsErrorState(e.toString()));
     }
